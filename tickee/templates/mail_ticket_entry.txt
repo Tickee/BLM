@@ -1,0 +1,2 @@
+{% with %}{% set event = ticket.ticket_order.ticket_type.get_event() %}{% set date = event.get_dates()[0] %}
+{{ event.name }} - {{ ticket.get_code() }} - http://inside.tick.ee/ticket/{{ticket.slugify()}}{% endwith %}

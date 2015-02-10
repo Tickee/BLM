@@ -1,0 +1,11 @@
+Hi {% if user.first_name is not none %}{{ user.first_name }}{% endif %}, 
+
+You requested to recover your tickee password. To complete your request, please click the following link:
+
+http://inside.tick.ee/widget/password-reset/{{ user.id }}/{{ user.get_recovery_code() }}
+
+If you do not request a new password, simply ignore this email.
+
+Kind Regards,
+
+Tickee 

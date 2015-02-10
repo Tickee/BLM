@@ -1,0 +1,13 @@
+Here is the ticket you requested.
+
+{% if event.url is not none or event.account.website is not none %}Info @ {{ event.url or event.account.website }}{% endif %}
+
+{% include "mail_ticket_entry.txt" %}
+
+{% if event.get_description() != "" %}Event Description:
+{{ event.get_description() }}{% endif %}
+
+Order# {{ order.id }}
+Ordered by {{ order.user.get_full_name() }} on {{ order.purchased_on }}. Entrance and payment responsibilities by {{ event.account.name }} ({{ event.account.email }})
+
+Do you organize events? Stay tuned at http://tick.ee

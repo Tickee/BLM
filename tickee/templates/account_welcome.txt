@@ -1,0 +1,15 @@
+Thank you for choosing tickee!
+
+{% if user.is_active() %}Your {{ account.full_name }} is ready to use at http://inside.tick.ee!
+{% else%}Your {{ account.full_name }} account is ready to use once you have activated your user account at http://inside.tick.ee/widget/activate/{{ user.id }}/{{ user.activation_key }}{%endif %}
+
+You can immediately start sending tickets or register free tickets. 
+For paid tickets, you need to connect a Payment Provider first. More information about that can be found on our support forum at http://tickee.zendesk.com/entries/20834082-setting-up-your-payment-provider
+
+Your login address is: http://inside.tick.ee 
+
+We're here to help you with any questions. You can visit our support center at http://tickee.zendesk.com or also call us: +32 9 3244375.
+
+Kind regards,
+
+Tickee

@@ -1,0 +1,37 @@
+{% raw %}
+<style> 
+a	{ text-decoration: none; }
+</style> 
+{% endraw %}
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="620" style="margin: 0 auto;"> 
+	<tbody> 
+		<tr> 
+			<td> 
+				<table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="620" style="font-family:'Helvetica Neue', Helvetica, sans; color: #333; font-size: 12px; padding-top: 50px;"> 
+					<tbody> 
+						<tr> 
+							<td style="text-align: center; width: 140px;"><img src="http://tick.ee/images/mail.activate.png" width="60" alt="tickee" style="width: 60px;" /></td> 
+							<td valign='top'> 
+								<h1 style="font-weight: normal; font-size: 18px; padding-right: 50px;">
+								
+								<p>Hi {% if user.first_name is not none %}{{ user.first_name }}{% endif %},</p> 
+
+								<p>You requested to recover your tickee password. To complete your request, please click the following link:</p>
+								
+								<p>Click <a href="http://inside.tick.ee/widget/password-reset/{{ user.id }}/{{ user.get_recovery_code() }}">here</a> to enter your new password.</p>
+								
+								<p>If you did not request a new password, simply ignore this email.</p>
+								
+								<p>Kind Regards,</p>
+								
+								<p>Tickee</p>  
+								<br><br><br> 
+							</td> 
+						</tr> 
+					</tbody> 
+				</table> 
+			</td> 
+		</tr> 
+	</tbody> 
+</table>

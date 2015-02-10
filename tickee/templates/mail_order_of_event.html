@@ -1,0 +1,95 @@
+{% raw %}
+<style>
+a    {{ text-decoration: none; }}
+.qr:before    {{
+    display: none; content:"Show code at entrance!"; color: white; background: black; padding: 12px; width: 75px; margin: 38px 0 0 14px; float: left; position: absolute; border: 2px solid white;
+    color: white; font-family:'Helvetica Neue', Helvetica, sans; font-size: 13px; text-align: center;
+}}
+.qr:hover::before    {{
+    display: block;
+}}
+</style>
+{% endraw %}
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="620" style="margin: 0 auto;">
+    <tbody>
+        <tr>
+            <td><img src="http://tick.ee/images/mail.line.gif" width="620" style="margin: 40px 0 20px;" /></td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="600" style="margin-left:10px; font-family:'Helvetica Neue', Helvetica, sans; color: #333; font-size: 12px;">
+                    <tbody>
+                        <tr>
+                            <td><img src="http://tick.ee/images/mail.shield.gif" width="129" height="129" alt="tickee" style="margin-right:24px; width: 129px; height: 129px;" /></td>
+                            <td>
+                                <h1 style="font-weight: normal; font-size: 18px; padding-right: 50px;">
+                                {% if order.get_tickets()|length > 1 %}
+                                	Your tickets for <a href="{{ event.url or event.account.website }}" style="color:#579fbc;"><strong>{{ event.name }} ({{ event.account.name }})</strong></a> are here!
+                                {% else %}
+                                	Your ticket for <a href="{{ event.url or event.account.website }}" style="color:#579fbc;"><strong>{{ event.name }} ({{ event.account.name }})</strong></a> is here!
+                                {% endif %}
+                                </h1>
+                                Order &nbsp;<strong>{{ order.id }}</strong><br>
+                                {% if event.url is not none or event.account.website is not none %}
+                                Info &nbsp; &nbsp; <a href="{{ event.url or event.account.website }}" style="text-decoration: underline; color: black;">{{ event.url or event.account.website }}</a>
+                                {% endif %}
+                                <br><br>
+                                <strong>Don't forget to bring your ticket(s) with you!</strong>
+                                <br><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        
+        <!-- Begin Ticket block --> 
+        
+        {% for ticket in tickets %}
+        	{% include "mail_ticket_entry.html" %}
+        {% endfor %}
+        
+        <!-- End Ticket block --> 
+        
+        <tr>
+            <td><img src="http://tick.ee/images/mail.line.gif" width="620" style="margin: 20px 0;" /></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="600" style="margin-left:10px; font-family:'Helvetica Neue', Helvetica, sans; color: #777; font-size: 11px;">
+                    <tbody>
+        
+        {% if event.get_description() != "" %}
+		<!-- Start Info block -->				
+						
+						<tr> 
+							<td style="padding: 4px 0 20px; border-bottom: 1px solid #ccc;" valign='top'> 
+								{{ event.get_description() }}
+							</td> 
+							<td style="padding-bottom: 10px; text-align: right; color: #ccc; border-bottom: 1px solid #ddd;" valign='top'> 
+								<h1>{{ event.name }}</h1> 
+							</td> 
+						</tr> 
+						<tr> 
+							<td colspan='2'>&nbsp;</td> 
+						</tr> 
+					
+		<!-- End Info block -->		                    
+        {% endif %}
+                        <tr>
+                            <td style="color: #999;">
+                                Ordered by <strong>{{ order.user.get_full_name() }}</strong> on {{ order.purchased_on }}<br>Entrance and payment responsibilities by <strong>{{ event.account.name }}</strong> ({{ event.account.email }})<br>
+                                <br><img src="http://tick.ee/images/mail.logo.gif" width="104"  height="20" style="width: 104px; height: 20px;" />
+                            </td>
+                            <td style="text-align: right; font-size: 12px;">
+                                Do you organize events?<br>Stay tuned!<br><br><a href="http://tick.ee" style="color:#666;">www.<strong style="color:#579fbc;">tick.ee</strong></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>        

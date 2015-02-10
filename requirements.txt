@@ -1,0 +1,5 @@
+distribute==0.6.10
+medusa==0.5.4
+meld3==0.6.5
+virtualenv==1.4.5
+wsgiref==0.1.2

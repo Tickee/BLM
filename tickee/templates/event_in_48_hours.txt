@@ -1,0 +1,10 @@
+Dear attendee,
+
+A small reminder: you bought tickets for {{ event.name }} on {{ event.get_start_date().date() }}.
+
+Don't forget to bring your ticket(s)!
+
+Thank you for attending {{ event.name }}. Don't forget to bring your ticket(s)!
+
+Not sure how? Read more on our support forum: http://tickee.zendesk.com/entries/20819983-how-to-bring-your-tickets
+

@@ -1,0 +1,49 @@
+{% with %}
+	{% set event = ticket.ticket_order.ticket_type.get_event() %}
+	{% set date = event.get_dates()[0] %}
+<tr>
+    <td><img src="http://tick.ee/images/mail.line.gif" width="620" style="margin: 20px 0 60px;" /></td>
+</tr>
+<tr>
+    <td>
+        <table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="600" style="margin:0 10px 30px; font-family:'Helvetica Neue', Helvetica, sans; color: #333; font-size: 12px;">
+            <tbody>
+                <tr>
+                    <td><img src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={{ ticket.get_qr_code_information() }}' alt="QR Code" width="169" height="169" style="margin-right:24px; width: 169px; height: 169px;" /></td>
+                    <td>
+                        <h1 style="font-size: 18px; color:#579fbc; margin-bottom: 0;">{{ event.name }}</h1>{% if date is not none %}{{ date.strftime("%A") }} <strong>{{ date.strftime("%d %b %Y") }}</strong>, from {{ date.strftime("%H:%M") }}{% endif %}
+                        <br><br>
+                        <strong>{{ event.venue.name }}</strong>
+                        {% if event.venue is not none%}
+                        	<br>{{ event.venue.address.street_line1 }}, {{ event.venue.address.postal_code }} {{ event.venue.address.city }}
+                        {% endif %}
+                        <br><br>
+                        1 <strong>{{ ticket.get_tickettype().name }}</strong> ticket<br><span style="color:#777; font-size: 11px;">{{ ticket.get_tickettype().get_description() or '' }}</span>
+                    </td>
+                    <td valign="bottom" style="text-align: center;" width="130">
+                        <table border="0" cellpadding="1" cellspacing="0" bgcolor="white" width="130" style="font-family:'Helvetica Neue', Helvetica, sans; color: #ccc; font-size: 10px; text-align: center; border: 3px solid #ccc; border-radius: 4px;">
+                            <tbody>
+                                <tr><td><strong>PURCHASED BY</strong></td></tr>
+                                <tr><td style="color: #333; font-size: 14px; border-bottom: 3px solid #ccc;">{{ ticket.user.get_full_name() }}</td></tr>
+                                <tr><td><strong>PRICE</strong></td></tr>
+                                <tr><td><strong style="color: #333; font-size: 14px;">
+                                	{% if as_guest %}
+                                		GUEST
+                                	{% else %}
+										&euro; {{ ticket.get_price() / 100.0 }}
+                                	{% endif %}
+                                </strong></td></tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    
+                </tr>
+                <tr>
+					<td colspan='2'></td>
+					<td style="text-align: center;"><a href="http://inside.tick.ee/ticket/{{ticket.slugify()}}" style="color:#579fbc; font-size: 11px; line-height: 18px;">view online</a></td>
+				</tr>
+            </tbody>
+        </table>
+    </td>
+</tr>
+{% endwith %}

@@ -1,0 +1,16 @@
+{% if order.get_tickets()|length > 1 %}Your tickets for {{ event.name }} ({{ event.url or event.account.website }}) are here!{% else %}Your ticket for {{ event.name }} ({{ event.url or event.account.website }}) is here!{% endif %}
+
+{% if event.url is not none or event.account.website is not none %}Info @ {{ event.url or event.account.website }}{% endif %}
+
+Here are your tickets:
+{% for ticket in tickets %}{% include "mail_ticket_entry.txt" %}{% endfor %}
+
+{% if event.get_description() != "" %}Event Description:
+{{ event.get_description() }}{% endif %}
+
+Don't forget to bring them with you!
+
+Order# {{ order.id }}
+Ordered by {{ order.user.get_full_name() }} on {{ order.purchased_on }}. Entrance and payment responsibilities by {{ event.account.name }} ({{ event.account.email }})
+
+Do you organize events? Stay tuned at http://tick.ee

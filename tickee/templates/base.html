@@ -1,0 +1,47 @@
+{% raw %}
+<style>
+a    {{ text-decoration: none; }}
+.qr:before    {{
+    display: none; content:"Show code at entrance!"; color: white; background: black; padding: 12px; width: 75px; margin: 38px 0 0 14px; float: left; position: absolute; border: 2px solid white;
+    color: white; font-family:'Helvetica Neue', Helvetica, sans; font-size: 13px; text-align: center;
+}}
+.qr:hover::before    {{
+    display: block;
+}}
+</style>
+{% endraw %}
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="620" style="margin: 0 auto;">
+    <tbody>
+        <tr>
+            <td><img src="http://tick.ee/images/mail.line.gif" width="620" style="margin: 40px 0 20px;" /></td>
+        </tr>
+
+		<tr>
+			<td>
+			
+			{{ content }}
+			
+			</td>
+		</tr>
+        
+        <tr>
+            <td><img src="http://tick.ee/images/mail.line.gif" width="620" style="margin: 20px 0;" /></td>
+        </tr>
+        
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" bgcolor="white" width="600" style="margin-left:10px; font-family:'Helvetica Neue', Helvetica, sans; color: #777; font-size: 11px;">
+                    <tbody>
+
+                        <tr>
+                            <td style="text-align: right; font-size: 12px;">
+                                Do you organize events?<br>Stay tuned!<br><br><a href="http://tick.ee" style="color:#666;">www.<strong style="color:#579fbc;">tick.ee</strong></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>        
